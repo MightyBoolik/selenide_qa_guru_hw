@@ -18,12 +18,21 @@ public class SelenideCheckGit {
     }
     @Test
     void SelenideInGitTest(){
-        open("https://github.com/");//Открыть страницу гитхаб
-        $("[name=q]").val("Selenide").pressEnter();//Ввести значение"Selenide" в поле поиска и нажать Enter
-        $$("ul.repo-list li").get(0).$("a").click();//Выбрать "Selenide/selenide"в списке репозитариев
-        $(byText("Wiki")).click();//Открыть раздел"Wiki"
-        $(".wiki-rightbar").shouldHave(text("SoftAssertions"));//Проверить наличие страницы"SoftAssertions"в "Pages"
-        $$("ul.m-0 li").get(14).click();//Открыть страницу "SoftAssertions"
+        open("https://github.com/");
+        //Открыть страницу гитхаб
+        $("[name=q]").val("Selenide").pressEnter();
+        //Ввести значение"Selenide" в поле поиска и нажать Enter
+        $$("ul.repo-list li").get(0).$("a").click();
+        //Выбрать "Selenide/selenide"в списке репозитариев
+        $(byText("Wiki")).click();
+        //Открыть раздел"Wiki"
+        $(".wiki-rightbar").shouldHave(text("SoftAssertions"));
+        //Проверить наличие страницы"SoftAssertions"в "Pages"
+        $$("ul.m-0 li").get(17).click();
+        //Открыть страницу "SoftAssertions"
+        $$("div.markdown-body li").shouldHave(CollectionCondition.itemWithText("Using JUnit5 extend test class:"));
+        //Проверка наличия на странице примера кода для JUnit5
+
 
 
 
