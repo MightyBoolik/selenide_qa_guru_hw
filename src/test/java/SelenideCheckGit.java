@@ -1,12 +1,9 @@
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.commands.ShouldHave;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.time.Duration;
 
+import static com.codeborne.selenide.CollectionCondition.itemWithText;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -17,20 +14,20 @@ public class SelenideCheckGit {
         Configuration.startMaximized = true;
     }
     @Test
-    void SelenideInGitTest(){
+    void selenideInGitTest(){
         open("https://github.com/");
         //Открыть страницу гитхаб
         $("[name=q]").val("Selenide").pressEnter();
         //Ввести значение"Selenide" в поле поиска и нажать Enter
-        $$("ul.repo-list li").get(0).$("a").click();
+        $(".repo-list a").click();
         //Выбрать "Selenide/selenide"в списке репозитариев
         $(byText("Wiki")).click();
         //Открыть раздел"Wiki"
         $(".wiki-rightbar").shouldHave(text("SoftAssertions"));
         //Проверить наличие страницы"SoftAssertions"в "Pages"
-        $$("ul.m-0 li").get(17).click();
+        $$(".internal").find(text("Soft assertions")).click();
         //Открыть страницу "SoftAssertions"
-        $$("div.markdown-body li").shouldHave(CollectionCondition.itemWithText("Using JUnit5 extend test class:"));
+        $$("#wiki-body li").shouldHave(itemWithText("Using JUnit5 extend test class:"));
         //Проверка наличия на странице примера кода для JUnit5
 
 
